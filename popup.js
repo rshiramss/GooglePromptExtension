@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load saved settings
     chrome.storage.sync.get(['buttonText', 'promptText'], function(result) {
         buttonTextInput.value = result.buttonText || 'Google Search';
-        promptTextInput.value = result.promptText || 'do a google search';
+        promptTextInput.value = result.promptText || 'Conduct a thorough Google search on the topic provided, summarize the most relevant and up-to-date information from reputable sources, cite all sources with links, highlight key findings, and present the information in a clear, concise, and well-structured format suitable for a professional audience.';
     });
 
     // Save settings
     saveButton.addEventListener('click', function() {
         const buttonText = buttonTextInput.value.trim() || 'Google Search';
-        const promptText = promptTextInput.value.trim() || 'do a google search';
+        const promptText = promptTextInput.value.trim() || 'Conduct a thorough Google search on the topic provided, summarize the most relevant and up-to-date information from reputable sources, cite all sources with links, highlight key findings, and present the information in a clear, concise, and well-structured format suitable for a professional audience.';
         
         chrome.storage.sync.set({
             buttonText: buttonText,
