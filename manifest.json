@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Google Search Prompt Helper",
+  "version": "1.0.0",
+  "description": "AI Assistant Enhancement Tool - Adds 'Google Search' button to prompt inputs for better research capabilities",
+  "author": "Prompt Enhancement Tools",
+  "homepage_url": "https://github.com/your-username/google-search-prompt-helper",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "commands": {
+    "trigger-google-search": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+G",
+        "mac": "Command+Shift+G"
+      },
+      "description": "Add Google search instruction to current prompt"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Google Search Prompt Helper",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "category": "productivity"
+}

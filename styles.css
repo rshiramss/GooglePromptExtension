@@ -1,0 +1,94 @@
+/* Custom prompt enhancement button styles */
+.prompt-enhancer-container {
+    position: relative;
+    display: inline-block;
+    margin: 4px;
+}
+
+.prompt-enhancer-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #1a73e8;
+    border: 1px solid #1a73e8;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Google Sans', Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    transition: all 0.2s ease;
+    user-select: none;
+    outline: none;
+}
+
+.prompt-enhancer-button:hover {
+    background-color: #1557b0;
+    border-color: #1557b0;
+    box-shadow: 0 2px 4px 0 rgba(26, 115, 232, 0.4);
+    transform: translateY(-1px);
+}
+
+.prompt-enhancer-button:active {
+    background-color: #1142a0;
+    border-color: #1142a0;
+    box-shadow: 0 1px 2px 0 rgba(26, 115, 232, 0.4);
+    transform: translateY(0);
+}
+
+.prompt-enhancer-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.prompt-enhancer-label {
+    font-size: 14px;
+    line-height: 20px;
+    color: inherit;
+}
+
+/* Integration with existing toolbox if present */
+.toolbox-drawer-button-container .prompt-enhancer-button {
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 8px;
+    padding: 12px 16px;
+    background-color: transparent;
+    border: none;
+}
+
+.toolbox-drawer-button-container .prompt-enhancer-button:hover {
+    background-color: rgba(60, 64, 67, 0.08);
+}
+
+/* Floating button style for general use */
+.prompt-enhancer-floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Feedback animation */
+.prompt-enhancer-feedback {
+    background-color: #137333;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: 'Google Sans', Roboto, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeInOut 2s ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(10px); }
+    20% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
