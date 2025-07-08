@@ -49,7 +49,7 @@ function appendTextToPrompt() {
     }
 
     chrome.storage.sync.get(['promptText'], function(result) {
-        const textToAdd = result.promptText || 'do a google search and cite sources';
+        const textToAdd = result.promptText || 'Conduct a thorough Google search on the topic provided, summarize the most relevant and up-to-date information from reputable sources, cite all sources with links, highlight key findings, and present the information in a clear, concise, and well-structured format suitable for a professional audience.';
         let currentValue = '';
 
         // Handle both textarea/input and contenteditable divs
