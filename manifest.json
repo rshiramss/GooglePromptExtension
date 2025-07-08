@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Google Search Prompt Helper",
+  "name": "Google Search Button for Gemini",
   "version": "1.0.0",
-  "description": "AI Assistant Enhancement Tool - Adds 'Google Search' button to prompt inputs for better research capabilities",
-  "author": "Prompt Enhancement Tools",
-  "homepage_url": "https://github.com/your-username/google-search-prompt-helper",
+  "description": "Adds 'Google Search' button to prompt inputs for better research capabilities",
+  "author": "rshiramss",
+  "homepage_url": "https://github.com/rshiramss/GooglePromptExtension",
   "permissions": [
     "activeTab",
     "storage"
