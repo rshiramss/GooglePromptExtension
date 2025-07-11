@@ -48,37 +48,45 @@ function appendTextToPrompt() {
         return;
     }
 
-    chrome.storage.sync.get(['promptText'], function(result) {
-        const textToAdd = result.promptText || 'Conduct a thorough Google search on the topic provided, summarize the most relevant and up-to-date information from reputable sources, cite all sources with links, highlight key findings, and present the information in a clear, concise, and well-structured format suitable for a professional audience.';
-        let currentValue = '';
-
-        // Handle both textarea/input and contenteditable divs
-        if (promptTextarea.tagName.toLowerCase() === 'textarea' || promptTextarea.tagName.toLowerCase() === 'input') {
-            currentValue = promptTextarea.value;
-        } else {
-            currentValue = promptTextarea.textContent;
-        }
-
-        const separator = currentValue && !/\s$/.test(currentValue) ? ' ' : '';
-        const finalText = currentValue + separator + textToAdd + ' ';
-
-        if (promptTextarea.tagName.toLowerCase() === 'textarea' || promptTextarea.tagName.toLowerCase() === 'input') {
-            promptTextarea.value = finalText;
-        } else {
-             // For contenteditable divs, we need to insert the text more carefully
-            const p = promptTextarea.querySelector('p');
-            if (p) {
-                p.innerHTML = finalText.replace(/\s/g, '&nbsp;'); // Use non-breaking spaces
-            } else {
-                 promptTextarea.textContent = finalText;
+    try {
+        chrome.storage.sync.get(['promptText'], function(result) {
+            if (chrome.runtime.lastError) {
+                console.error('Extension context invalidated or storage error:', chrome.runtime.lastError);
+                return;
             }
-        }
+            const textToAdd = result.promptText || 'Conduct a thorough Google search on the topic provided. Present a clear and concise summary of the most relevant and up-to-date information, using numbered citations [1], [2], etc. to reference sources. Highlight key findings in the main text. At the bottom, include a "Sources" section that lists all references with their full URLs. Format the response to be well-structured and suitable for a professional audience.';
+            let currentValue = '';
 
-        // Trigger input event to let the website know the content has changed
-        promptTextarea.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
-        showFeedback();
-        promptTextarea.focus();
-    });
+            // Handle both textarea/input and contenteditable divs
+            if (promptTextarea.tagName.toLowerCase() === 'textarea' || promptTextarea.tagName.toLowerCase() === 'input') {
+                currentValue = promptTextarea.value;
+            } else {
+                currentValue = promptTextarea.textContent;
+            }
+
+            const separator = currentValue && !/\s$/.test(currentValue) ? ' ' : '';
+            const finalText = currentValue + separator + textToAdd + ' ';
+
+            if (promptTextarea.tagName.toLowerCase() === 'textarea' || promptTextarea.tagName.toLowerCase() === 'input') {
+                promptTextarea.value = finalText;
+            } else {
+                 // For contenteditable divs, we need to insert the text more carefully
+                const p = promptTextarea.querySelector('p');
+                if (p) {
+                    p.innerHTML = finalText.replace(/\s/g, '&nbsp;'); // Use non-breaking spaces
+                } else {
+                     promptTextarea.textContent = finalText;
+                }
+            }
+
+            // Trigger input event to let the website know the content has changed
+            promptTextarea.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+            showFeedback();
+            promptTextarea.focus();
+        });
+    } catch (e) {
+        console.error('Extension context invalidated:', e);
+    }
 }
 
 
